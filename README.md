@@ -47,7 +47,7 @@ The input parameters of the model are summarized in the following table：
 ## Interpretable analysis and prediction using a trained GAHGNN model
 You do these by:
 ```
-python predict.py --sample dataset_path --embedding node_feature_path --modelpath model_path --savepath results_save_path
+python predict.py --sample dataset_path --embedding node_feature_path --modelpath model_path --savepath results_save_path.xlsx
 ```
 The `sample` parameter can be the data you want to predict, or the data on which you want to perform interpretability analysis.
 
