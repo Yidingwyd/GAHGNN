@@ -49,6 +49,13 @@ You do these by:
 ```
 python predict.py --sample dataset_path --embedding node_feature_path --modelpath model_path --savepath results_save_path
 ```
+The `sample` parameter can be the data you want to predict, or the data on which you want to perform interpretability analysis.
 
+The results are saved as an .xlsx file.
 
+In Sheet1, the output column contains the model’s predictions for different samples. 
+
+Sheet2 contains the effect values for each data point. If a size-1 model is used, meaning the model contains only self-loops, these columns correspond to the main effects and are arranged in the order of the variables. If a size-2 model is used, meaning the model contains only ordinary edges, these columns correspond to pairwise interactions and are arranged according to the combination order of the variables. The same rule applies to higher-order models.
+
+## Useful utils
 
