@@ -29,6 +29,18 @@ The **node features** of GAHGNN should be saved as a python dictionary in a `.js
 
 Based on the input files, the program will automatically generate PyTorch tensors in a style of hypergraph representation. 
 
+## Train a GAHGNN model
+You can train a GAHGNN model by:  
+```
+python main.py --train_data train_set_path --val_data val_set_path --embedding node_feature_path --savepath model_save_path --size size_of_the_edge_in_the_model
+```
+
+For example:
+```
+python main.py --train_data ./datasets/eaf/train_set.csv --val_data ./datasets/eaf/val_set.csv --embedding ./datasets/eaf/onehot-embedding.json --savepath ./datasets/eaf/0/ --size 1
+```
+By running the above command, you can train a GAHGNN that contains only self-loops. In staged training, if you want to train other uniform GAHGNN variants, such as models containing only pairwise edges or 3-order hyperedges, train_data and val_data must be the residualized data. The detailed procedure is described later.
+
 
 
 
