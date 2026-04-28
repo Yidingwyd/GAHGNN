@@ -63,13 +63,16 @@ def build_inter_effect_result(elem_dict, input_dir='.', output_file='inter_effec
                     f'但当前组合 {x_name}-{y_name} 需要读取第 {col_index + 1} 列。'
                 )
 
-            z_values = raw.iloc[:, col_index].dropna().reset_index(drop=True)
+            z_values_raw = raw.iloc[:, col_index].dropna().reset_index(drop=True)
 
-            if len(z_values) != expected_rows:
+            if len(z_values_raw) != expected_rows:
                 raise ValueError(
-                    f'{input_file} 中第 {col_index + 1} 列有效行数为 {len(z_values)}，'
+                    f'{input_file} 中第 {col_index + 1} 列有效行数为 {len(z_values_raw)}，'
                     f'但 {x_name}({len(x_values)}) × {y_name}({len(y_values)}) 应为 {expected_rows} 行。'
                 )
+
+            z_mean_raw = z_values_raw.mean()
+            z_values = z_values_raw - z_mean_raw
 
             result = pd.DataFrame(xy_pairs, columns=[x_name, y_name])
             result['z'] = z_values
@@ -91,6 +94,8 @@ def build_inter_effect_result(elem_dict, input_dir='.', output_file='inter_effec
                     'x_count': len(x_values),
                     'y_count': len(y_values),
                     'xy_count': expected_rows,
+                    'z_raw_mean_subtracted': z_mean_raw,
+                    'z_sum_after_centering': z_values.sum(),
                     'z_var': z_values.var(),
                     'z_min': z_values.min(),
                     'z_max': z_values.max(),

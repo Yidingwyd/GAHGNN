@@ -47,9 +47,13 @@ wide_pairs = pd.DataFrame({"row_index": sheet1.index})
 if "Unnamed: 0" in sheet1.columns:
     wide_pairs["sample_id"] = sheet1["Unnamed: 0"]
 
+# Center each effect column by subtracting its mean, so the sum of each effect is 0.
+effect_values = sheet2.astype("float64")
+effect_values = effect_values - effect_values.mean(axis=0)
+
 for j, element in enumerate(elements):
     wide_pairs[f"{element}_composition"] = composition_dicts.apply(lambda d: d[element])
-    wide_pairs[f"{element}_main_effect"] = sheet2.iloc[:, j]
+    wide_pairs[f"{element}_main_effect"] = effect_values.iloc[:, j]
 
 summary_rows = []
 for j, element in enumerate(elements):
