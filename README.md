@@ -117,6 +117,7 @@ Next run `analyze_inter_effect.py` in `./example/0-0`
 ```
 python predict.py --sample ./example/0-0-0/x1x2x3.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0-0-0/best.pth.tar --savepath ./example/0-0-0/high_inter_effect.xlsx
 ```
-
+# Acknowledgement  
+Codes of the GAHGNN are developed based on [Roost](https://github.com/CompRhys/roost), which is licensed under the MIT License. We recommend to cite their works.  
 
 
