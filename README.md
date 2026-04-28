@@ -5,10 +5,12 @@ Generalized additive hypergraph neural network
 * [How to cite](https://github.com/Yidingwyd/GAHGNN#how-to-cite)
 * [Prerequisites](https://github.com/Yidingwyd/GAHGNN#prerequisites)
 * [Usage](https://github.com/Yidingwyd/GAHGNN#usage)
-** [Input of GAHGNN](https://github.com/Yidingwyd/GAHGNN#input-of-gahgnn)
-** [Train a GAHGNN model](https://github.com/Yidingwyd/GAHGNN#train-a-gahgnn-model)
-** [Interpretable analysis and prediction using a trained GAHGNN model](https://github.com/Yidingwyd/GAHGNN#interpretable-analysis-and-prediction-using-a-trained-gahgnn-model)
-  
+  * [Input of GAHGNN](https://github.com/Yidingwyd/GAHGNN#input-of-gahgnn)
+  * [Train a GAHGNN model](https://github.com/Yidingwyd/GAHGNN#train-a-gahgnn-model)
+  * [Interpretable analysis and prediction using a trained GAHGNN model](https://github.com/Yidingwyd/GAHGNN#interpretable-analysis-and-prediction-using-a-trained-gahgnn-model)
+* [Useful utils](https://github.com/Yidingwyd/GAHGNN#useful-utils)
+* [An example workflow for using GAHGNN](https://github.com/Yidingwyd/GAHGNN#an-example-workflow-for-using-gahgnn)
+* [Acknowledgement](https://github.com/Yidingwyd/GAHGNN#acknowledgement)
 # Brief review
 GAHGNN is an intrinsically interpretable additive framework that represents variables as nodes, main effects as self-loops, pairwise interactions as edges, and higher-order interactions as hyperedges in a hypergraph. This design makes GAHGNN especially suitable for scientific applications where interpretability, interaction modeling, and structural transparency are important.
 # How to cite
