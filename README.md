@@ -1,5 +1,14 @@
 # GAHGNN
 Generalized additive hypergraph neural network
+# Contents  
+* [Brief review](https://github.com/Yidingwyd/GAHGNN#brief-review)
+* [How to cite](https://github.com/Yidingwyd/GAHGNN#how-to-cite)
+* [Prerequisites](https://github.com/Yidingwyd/GAHGNN#prerequisites)
+* [Usage](https://github.com/Yidingwyd/GAHGNN#usage)
+** [Input of GAHGNN](https://github.com/Yidingwyd/GAHGNN#input-of-gahgnn)
+** [Train a GAHGNN model](https://github.com/Yidingwyd/GAHGNN#train-a-gahgnn-model)
+** [Interpretable analysis and prediction using a trained GAHGNN model](https://github.com/Yidingwyd/GAHGNN#interpretable-analysis-and-prediction-using-a-trained-gahgnn-model)
+  
 # Brief review
 GAHGNN is an intrinsically interpretable additive framework that represents variables as nodes, main effects as self-loops, pairwise interactions as edges, and higher-order interactions as hyperedges in a hypergraph. This design makes GAHGNN especially suitable for scientific applications where interpretability, interaction modeling, and structural transparency are important.
 # How to cite
@@ -57,13 +66,13 @@ In Sheet1, the output column contains the model’s predictions for different sa
 
 Sheet2 contains the effect values for each data point. If a size-1 model is used, meaning the model contains only self-loops, these columns correspond to the main effects and are arranged in the order of the variables. If a size-2 model is used, meaning the model contains only ordinary edges, these columns correspond to pairwise interactions and are arranged according to the combination order of the variables. The same rule applies to higher-order models.
 
-## Useful utils
+# Useful utils
 - [get_GAHGNN_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_GAHGNN_data.py): If your dataset is stored in an Excel file, with the first n-1 columns representing different variable values and the last column representing the target, you can use this Python script to generate a CSV file compatible with GAHGNN.
 - [res_cal.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/res_cal.py): helps to compute the residuals between the predictions of lower-order models and the target values, and automatically saves them as CSV files in the format required for GAHGNN training.
 - [get_main_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_main_data.py) and [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py): When analyzing variable effects, it is usually necessary to examine each variable over its full value range. These two Python scripts can help generate main effect and pairwise interaction CSV files for GAHGNN prediction. In addition, [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py) can print the command that needs to be executed. You should modify num and elem_dict in the scripts according to your actual needs, as well as the print format in the last line of [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py).
 - [analyze_main_effect.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/analyze_main_effect.py) and [analyze_inter_effect.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/analyze_inter_effect.py): These two scripts can help analyze the main effects and pairwise interaction effects predicted by GAHGNN. Note that `elem_dict` in `analyze_inter_effect.py` should be modified as needed to ensure that it is consistent with the one in `get_inter_data.py`.
 
-## An example workflow for using GAHGNN
+# An example workflow for using GAHGNN
 1. Train the 1-uniform GAHGNN
 ```
 python main.py --train_data ./example/train_set.csv --val_data ./example/val_set.csv --embedding ./example/onehot-embedding.json --savepath ./example/0/ --size 1
