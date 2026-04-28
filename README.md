@@ -12,7 +12,7 @@ Two files are required to be input into GAHGNN:
 * Input dataset `.csv`.  
 * Node features to describe the variables `.json`.
 
-As an example, one can refer to the [EPA dataset](https://github.com/Yidingwyd/NCGNN/blob/main/Kfold/cpa/cpa_formation_energy_per_atom.json), of which the data are generated from an analytical nonlinear function with up to 3-order interactions.
+As an example, one can refer to the [EAF dataset](https://github.com/Yidingwyd/GAHGNN/blob/main/datasets/EAF/eaf.csv), of which the data are generated from an analytical nonlinear function with up to 3-order interactions.
 
 The **input dataset** of GAHGNN should be saved in a `.csv` file:
 
@@ -58,4 +58,7 @@ In Sheet1, the output column contains the model’s predictions for different sa
 Sheet2 contains the effect values for each data point. If a size-1 model is used, meaning the model contains only self-loops, these columns correspond to the main effects and are arranged in the order of the variables. If a size-2 model is used, meaning the model contains only ordinary edges, these columns correspond to pairwise interactions and are arranged according to the combination order of the variables. The same rule applies to higher-order models.
 
 ## Useful utils
+- [get_GAHGNN_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_GAHGNN_data.py): If your dataset is stored in an Excel file, with the first n-1 columns representing different variable values and the last column representing the target, you can use this Python script to generate a CSV file compatible with GAHGNN.
+- [res_cal.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/res_cal.py): helps to compute the residuals between the predictions of lower-order models and the target values, and automatically saves them as CSV files in the format required for GAHGNN training.
+- [get_main_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_main_data.py) and [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py): When analyzing variable effects, it is usually necessary to examine each variable over its full value range. These two Python scripts can help generate main effect and pairwise interaction CSV files for GAHGNN prediction. In addition, [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py) can print the command that needs to be executed. You should modify num and elem_dict in the scripts according to your actual needs, as well as the print format in the last line of [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py).
 
