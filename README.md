@@ -63,6 +63,60 @@ Sheet2 contains the effect values for each data point. If a size-1 model is used
 - [get_main_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_main_data.py) and [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py): When analyzing variable effects, it is usually necessary to examine each variable over its full value range. These two Python scripts can help generate main effect and pairwise interaction CSV files for GAHGNN prediction. In addition, [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py) can print the command that needs to be executed. You should modify num and elem_dict in the scripts according to your actual needs, as well as the print format in the last line of [get_inter_data.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/get_inter_data.py).
 - [analyze_main_effect.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/analyze_main_effect.py) and [analyze_inter_effect.py](https://github.com/Yidingwyd/GAHGNN/blob/main/utils/analyze_inter_effect.py): These two scripts can help analyze the main effects and pairwise interaction effects predicted by GAHGNN. Note that `elem_dict` in `analyze_inter_effect.py` should be modified as needed to ensure that it is consistent with the one in `get_inter_data.py`.
 
+## An example workflow for using GAHGNN
+1. Train the 1-uniform GAHGNN
+```
+python main.py --train_data ./example/train_set.csv --val_data ./example/val_set.csv --embedding ./example/onehot-embedding.json --savepath ./example/0/ --size 1
+```
+2. Predict using the trained 1-uniform GAHGNN
+```
+python predict.py --sample ./example/train_set.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0/best.pth.tar --savepath ./example/0/predict_train.xlsx
+python predict.py --sample ./example/val_set.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0/best.pth.tar --savepath ./example/0/predict_val.xlsx
+```
+3. Calculate the residual error
+
+Run `res_cal.py` in `./example/0/`
+
+4. Train the 2-uniform GAHGNN
+```
+python main.py --train_data ./example/0/train_res.csv --val_data ./example/0/val_res.csv --embedding ./example/onehot-embedding.json --savepath ./example/0-0/ --size 2
+```
+5. Predict using the trained 2-uniform GAHGNN
+```
+python predict.py --sample ./example/train_set.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0/best.pth.tar --savepath ./example/0/predict_train.xlsx
+python predict.py --sample ./example/val_set.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0/best.pth.tar --savepath ./example/0/predict_val.xlsx
+```
+6. Calculate the residual error
+
+Run `res_cal.py` in `./example/0-0/`
+
+7. Train the 3-uniform GAHGNN
+```
+python main.py --train_data ./example/0-0/train_res.csv --val_data ./example/0-0/val_res.csv --embedding ./example/onehot-embedding.json --savepath ./example/0-0-0/ --size 3
+```
+8. Analyze the main effect
+
+Run `get_main_data.py` in `./example/`
+
+Then run
+```
+python predict.py --sample ./example/main.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0/best.pth.tar --savepath ./example/0/main_effect.xlsx
+```
+
+Next run `analyze_main_effect.py` in `./example/0`
+
+9. Analyze the pairwise interaction effect
+
+Run `get_inter_data.py` in `./example/`, and the commands that are need to run next is printed.
+
+Then run the printed commands.
+
+Next run `analyze_inter_effect.py` in `./example/0-0`
+
+10. Analyze the 3-order interaction effect
+```
+python predict.py --sample ./example/0-0-0/x1x2x3.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0-0-0/best.pth.tar --savepath ./example/0-0-0/high_inter_effect.xlsx
+```
 
 
 
