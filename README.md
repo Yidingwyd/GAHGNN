@@ -84,7 +84,7 @@ python main.py --train_data ./example/0/train_res.csv --val_data ./example/0/val
 5. Predict using the trained 2-uniform GAHGNN
 ```
 python predict.py --sample ./example/0/train_res.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0-0/best.pth.tar --savepath ./example/0-0/predict_train.xlsx
-python predict.py --sample ./example/val_res.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0-0/best.pth.tar --savepath ./example/0-0/predict_val.xlsx
+python predict.py --sample ./example/0/val_res.csv --embedding ./example/onehot-embedding.json --modelpath ./example/0-0/best.pth.tar --savepath ./example/0-0/predict_val.xlsx
 ```
 6. Calculate the residual error
 
