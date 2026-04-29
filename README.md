@@ -1,5 +1,7 @@
 # GAHGNN
 Generalized additive hypergraph neural network
+
+Please feel free to contact me by email if you have any questions about the code (yidingwyd@163.com).
 # Contents  
 * [Brief review](https://github.com/Yidingwyd/GAHGNN#brief-review)
 * [How to cite](https://github.com/Yidingwyd/GAHGNN#how-to-cite)
