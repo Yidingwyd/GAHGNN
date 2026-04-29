@@ -53,7 +53,7 @@ python main.py --train_data ./datasets/eaf/train_set.csv --val_data ./datasets/e
 By running the above command, you can train a 1-uniform GAHGNN that contains only self-loops. In staged training, if you want to train other uniform GAHGNN variants, such as models containing only pairwise edges or 3-order hyperedges, `train_data` and `val_data` must be the residualized datasets, and the `size` parameter must be changed correspondingly. The detailed procedure is described later.
 
 The input parameters of the model are summarized in the following table：  
-![Table 1](https://github.com/Yidingwyd/NCGNN/blob/main/table1.png)  
+![Table 1](https://github.com/Yidingwyd/GAHGNN/blob/main/table1.png)  
 
 ## Interpretable analysis and prediction using a trained GAHGNN model
 You do these by:
