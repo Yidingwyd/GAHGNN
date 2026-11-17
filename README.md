@@ -143,22 +143,20 @@ The nonlinear analytical function (NAF) example uses three variables and provide
 1. **Train a single model for all three orders:**
 
    ```sh
-   python main.py --train_data ./data/NAF/train_set.csv --val_data ./data/NAF/val_set.csv --embedding ./data/NAF/onehot-embedding.json --savepath ./runs/NAF_seed11 --size 3 --seed 11
+   python main.py --train_data ./data/NAF/train_set.csv --val_data ./data/NAF/val_set.csv --embedding ./data/NAF/onehot-embedding.json --savepath ./data/NAF/1 --size 3
    ```
 
 2. **Predict the validation samples and obtain their native effects:**
 
    ```sh
-   python predict.py --sample ./data/NAF/val_set.csv --modelpath ./runs/NAF_seed11 --savepath ./runs/NAF_seed11/validation
+   python predict.py --sample ./data/NAF/val_set.csv --modelpath ./data/NAF/1 --savepath ./data/NAF/1/validation
    ```
 
 3. **Export the learned effects on a regular grid:**
 
    ```sh
-   python export_effects.py --run ./runs/NAF_seed11 --points 51 --output ./runs/NAF_seed11/effects
+   python export_effects.py --run ./data/NAF/1/ --points 51
    ```
-
-To skip training and use the included NAF checkpoint, replace `./runs/NAF_seed11` in `--modelpath` or `--run` with `./data/NAF/best.pth.tar`. To set all NAF export axes to $[-\pi/2,\pi/2]$ explicitly, add `--lower -1.5707963267948966 --upper 1.5707963267948966`.
 
 ## Example datasets and checkpoints
 
