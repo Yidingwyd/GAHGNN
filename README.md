@@ -135,7 +135,6 @@ The exported values are **the model's own gated effects**, not a post-hoc fANOVA
 
 - **Specify known zero effects.** Append `--exclude-effect Al Cr` to a training command to fix only the Al–Cr pairwise term to zero. Neither input variable is removed, and the Al–Cr–Mo term is not excluded automatically. Repeat the flag for each additional effect, for example `--exclude-effect Mo --exclude-effect Al Cr`. The checkpoint preserves these exclusions for prediction and export; `effect_summary.csv` marks them with `prior_excluded` to distinguish them from effects set to zero by entmax.
 - **Run ablations.** Use `--ablation no_purity`, `no_sparse_loss`, or `mse_only` to disable regularizers. `no_dense` allocates all AdamW epochs to sparse training, whereas `no_sparse_stage` allocates them all to dense training and retains the equal gates. Both keep the specified total number of epochs and the L-BFGS refinement setting.
-- **Export pairwise Excel tables.** `export_effects_xlsx.py` is called by `export_effects.py` and should stay beside it. It is not a separate analysis step.
 
 ## An example workflow for using GAHGNN
 
