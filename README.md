@@ -166,7 +166,7 @@ The nonlinear analytical function (NAF) example uses three variables and provide
 | Landau ($r_\phi=+1$) | `data/Landau_r1/` | `train_set.csv`, `val_set.csv`, and `embedding.json`. |
 | Landau ($r_\phi=-1$) | `data/Landau_rminus1/` | `train_set.csv`, `val_set.csv`, and `embedding.json`. |
 | High-entropy alloy catalysis (HEAC) | `data/HEAC/` | `train_set.csv`, `val_set.csv`, and `embedding.json`. See the encoding note below. |
-| Nb alloys | `data/Nb/` | Five `size=1` composition-only checkpoints, `seed1best.pth.tar` through `seed5best.pth.tar`, for seeds 11, 23, 37, 53, and 71, respectively. The training and validation CSVs are not included in this directory. |
+| Nb alloys | `data/Nb/` | Five `size=1` composition-only checkpoints, `seed1best.pth.tar` through `seed5best.pth.tar`, for 5 different seeds. The training and validation CSVs are not included in this directory. |
 
 
 ## Acknowledgement
