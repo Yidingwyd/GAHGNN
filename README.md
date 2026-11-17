@@ -23,27 +23,19 @@ For questions about the code, please contact [Yiding Wang](mailto:yidingwyd@163.
 
 GAHGNN is an intrinsically interpretable regression model. It represents variables as nodes, main effects as self-loops, pairwise interactions as edges, and higher-order interactions as hyperedges. The response is a sum of a baseline and learned effect functions. Each function depends only on the variables in its corresponding self-loop, edge, or hyperedge. Effect functions of the same order share network parameters, and entmax gates can set individual effects to zero during training.
 
-In this version, **all orders up to `--size` are fitted jointly to the original target**. There is no need to generate residual datasets or train and combine separate checkpoints for each order. The supported maximum orders are 1, 2, and 3.
 
 ## How to cite
 
-If you use this software, please cite the [GAHGNN repository](https://github.com/Yidingwyd/GAHGNN) and report the version or commit used. Please also cite the accompanying manuscript once its bibliographic details are available.
+Our paper is submitted.
 
 ## Prerequisites
 
-Install PyTorch and a `torch-scatter` build that matches your PyTorch version and CPU or CUDA build. The other dependencies are NumPy and `entmax`, plus `pandas` and `openpyxl` for pairwise-effect Excel export. No Node.js installation is required.
-
-The code was checked in a Windows environment with Python 3.9, PyTorch 2.8.0 (CUDA 12.8), `torch-scatter` 2.1.2, NumPy 2.0.2, `entmax` 1.3, `pandas` 2.3.3, and `openpyxl` 3.1.5. To set up this combination in a new environment:
-
-```sh
-conda create -n gahgnn python=3.9
-conda activate gahgnn
-python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
-python -m pip install --no-index --find-links "https://data.pyg.org/whl/torch-2.8.0+cu128.html" torch-scatter==2.1.2
-python -m pip install numpy==2.0.2 entmax==1.3 pandas==2.3.3 openpyxl==3.1.5
-```
-
-For a CPU-only installation on Windows or Linux, replace `cu128` with `cpu` in both wheel URLs and use `--device cpu` in the training command. For other builds, see the [PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/) and the [torch-scatter installation instructions](https://github.com/rusty1s/pytorch_scatter#installation).
+numpy
+torch
+entmax
+torch-scatter
+pandas
+openpyxl
 
 ## Usage
 
@@ -71,7 +63,7 @@ sample_002,"{'Al': 0.5, 'Cr': -0.5, 'Mo': 1.0}",1.31
 }
 ```
 
-Variable names are not hard-coded. The program takes their order from the JSON keys unless an explicit comma-separated `--variables` order is given. That list must contain all JSON keys; it reorders rather than subsets the variables. Inputs and targets must be finite, and the training targets must not all be equal.
+
 
 ### Train a GAHGNN model
 
@@ -94,7 +86,6 @@ The default training protocol has three phases, each operating on all requested 
 
 1. **Dense pretraining (600 epochs).** All allowed effects within an order receive equal gate weights while their functions learn. The conditional-mean purification penalty is gradually enabled. It penalizes nonzero main-effect means and lower-order content in interaction functions, using quadrature over the training bounds. It is a soft constraint, not a guarantee of exact orthogonality.
 2. **Sparse selection (500 epochs).** Effect gates are learned with entmax (fixed $\alpha=1.5$). During the first 60% of this phase, the gate temperature decreases from 1 to 0.4, the uniform component decreases from 5% to zero, and the adaptive gate-sparsity penalty is ramped up. After the transition, entmax can set gates exactly to zero; no post-training pruning is needed.
-3. **Fixed-gate refinement.** L-BFGS refines the effect functions while keeping the selected gates fixed.
 
 The prediction loss is MSE on the standardized full response. The two regularizers above are used where applicable. Model checkpoints are selected using the supplied validation set, so use a separate test set for an independent assessment.
 
