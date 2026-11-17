@@ -104,7 +104,7 @@ The training command writes the following files to `--savepath`:
 python predict.py --sample QUERY.csv --modelpath RUN_DIR --savepath PREDICTION_DIR
 ```
 
-`--modelpath` accepts either a run directory containing `best.pth.tar` or the checkpoint file itself. Provide the same `composition` format as for training, with every model variable present. `target` is optional. The checkpoint stores the variable features. Add `--disable-cuda` to force CPU inference.
+- `--modelpath` accepts either a run directory containing `best.pth.tar` or the checkpoint file itself. Provide the same `composition` format as for training, with every model variable present. `target` is optional. The checkpoint stores the variable features. Add `--disable-cuda` to force CPU inference.
 
 - `predictions.csv` contains a prediction, an intercept, and the native model terms (`gated_order_term_001`, etc.) for each requested row. The intercept plus the sum of the terms gives the prediction. These terms are in the original target units and have not been mean-centered.
 - `prediction_summary.json` lists the effect corresponding to each term column in `effect_order`. If every row has a target, the summary also reports full-response metrics, including RMSE and R².
