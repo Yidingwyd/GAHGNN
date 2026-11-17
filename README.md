@@ -77,7 +77,7 @@ python main.py --train_data TRAIN.csv --val_data VAL.csv --embedding EMBEDDING.j
 | `--seed` | `11` | Random seed. |
 | `--epochs` | `1100` | Total AdamW epochs, normally split into about 6/11 dense pretraining and 5/11 sparse selection. |
 | `--polish-steps` | `40` | Number of L-BFGS refinement blocks, each with up to 10 internal iterations. Use `0` to skip refinement. |
-| `--batch-size` | `1024` | This implementation uses full batches. Set this value at least as high as the larger of the training and validation row counts. |
+| `--batch-size` | `1024` | This implementation uses full batches.|
 | `--device` | `cuda` | Use `--device cpu` (or `--disable-cuda`) without CUDA. |
 | `--exclude-effect` | None | Repeatable option for fixing a specified effect to zero. |
 | `--ablation` | `full` | Selects the full training protocol or an ablation configuration. |
