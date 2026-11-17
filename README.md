@@ -168,9 +168,6 @@ The nonlinear analytical function (NAF) example uses three variables and provide
 | High-entropy alloy catalysis (HEAC) | `data/HEAC/` | `train_set.csv`, `val_set.csv`, and `embedding.json`. See the encoding note below. |
 | Nb alloys | `data/Nb/` | Five `size=1` composition-only checkpoints, `seed1best.pth.tar` through `seed5best.pth.tar`, for seeds 11, 23, 37, 53, and 71, respectively. The training and validation CSVs are not included in this directory. |
 
-**HEAC element encoding.** The HEAC CSVs use integer identifiers `26`, `27`, `28`, `29`, and `30` for Fe, Co, Ni, Cu, and Zn. To use the element-one-hot model, use the matching HEAC code package: it converts each identifier to a five-component element vector inside the model, without changing the CSV. The root `predict.py` uses scalar inputs and cannot load a HEAC element-one-hot checkpoint. Use the HEAC package's `predict.py` for those checkpoints and evaluate effects on the five discrete values, not on a continuous grid.
-
-**Nb alloy checkpoints.** Pass an individual checkpoint file directly to `--modelpath` or `--run`. For summaries across all five models, export each model on the same grid and aggregate the curves point by point; a single checkpoint does not reproduce the mean curve or its seed-to-seed variation.
 
 ## Acknowledgement
 
